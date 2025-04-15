@@ -6,6 +6,7 @@ This repository contains documentation and automation scripts for setting up the
 
 - `DEVELOPMENT_SETUP.md`: Detailed guide for manual development environment setup
 - `DEV_AUTOMATION.md`: Guide for automated environment setup using Packer and Vagrant
+- `SYSTEM_DESIGN.md`: Comprehensive system design documentation
 
 ## Quick Start
 
@@ -18,6 +19,7 @@ This repository contains documentation and automation scripts for setting up the
 2. Choose your setup method:
    - For manual setup, follow the instructions in `DEVELOPMENT_SETUP.md`
    - For automated setup, follow the instructions in `DEV_AUTOMATION.md`
+   - For system architecture and design details, refer to `SYSTEM_DESIGN.md`
 
 ## Requirements
 
@@ -30,6 +32,7 @@ This repository contains documentation and automation scripts for setting up the
 
 - [Development Setup Guide](DEVELOPMENT_SETUP.md)
 - [Automation Guide](DEV_AUTOMATION.md)
+- [System Design Document](SYSTEM_DESIGN.md)
 
 ## Contributing
 
