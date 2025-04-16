@@ -1,47 +1,123 @@
-# Storeit Development Environment Setup
+# Storeit - Local-First Inventory Management System
 
-This repository contains documentation and automation scripts for setting up the development environment for the Storeit Inventory Management System.
+Storeit is a comprehensive inventory management system designed for mid-sized retail chains, manufacturing SMEs, and distribution companies. The system follows a local-first architecture with optional cloud synchronization capabilities.
 
-## Contents
+## Key Features
 
-- `DEVELOPMENT_SETUP.md`: Detailed guide for manual development environment setup
-- `DEV_AUTOMATION.md`: Guide for automated environment setup using Packer and Vagrant
-- `SYSTEM_DESIGN.md`: Comprehensive system design documentation
+- **Local-First Architecture**
+  - Full offline operation
+  - Local data storage
+  - Automatic backup system
+  - Optional cloud sync
 
-## Quick Start
+- **Cross-Platform Support**
+  - Windows desktop application
+  - macOS desktop application
+  - Linux desktop application
+  - Mobile applications (iOS/Android)
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/snehilbhadkamkar/storeit-setup.git
-   cd storeit-setup
-   ```
+- **Core Functionality**
+  - Inventory tracking and management
+  - Multi-location support
+  - Barcode/QR scanning
+  - Reporting and analytics
+  - User management and access control
+  - Backup and restore capabilities
 
-2. Choose your setup method:
-   - For manual setup, follow the instructions in `DEVELOPMENT_SETUP.md`
-   - For automated setup, follow the instructions in `DEV_AUTOMATION.md`
-   - For system architecture and design details, refer to `SYSTEM_DESIGN.md`
+## System Components
 
-## Requirements
+1. **Desktop Application (.NET MAUI)**
+   - Primary user interface
+   - Local data storage
+   - Offline operation
+   - Local API server
 
-- Windows 10/11 Pro or Enterprise
-- 16GB RAM minimum (32GB recommended)
-- 256GB SSD minimum (512GB recommended)
-- Virtualization support enabled in BIOS
+2. **Mobile Application**
+   - Barcode/QR scanning
+   - Inventory checks
+   - Basic analytics
+   - Work order management
+
+3. **Central Monitoring Server**
+   - System health monitoring
+   - Module update distribution
+   - Troubleshooting support
+
+## Getting Started
+
+### Prerequisites
+
+- Windows 10/11, macOS 12+, or Linux (Ubuntu 22.04+)
+- .NET SDK 8.0
+- SQLite
+- Node.js 18+ (for development)
+
+### Installation
+
+1. Download the latest release for your platform
+2. Run the installer
+3. Follow the setup wizard
+4. Configure local database
+5. Set up backup locations
+
+### Development Setup
+
+See [DEVELOPMENT_SETUP.md](DEVELOPMENT_SETUP.md) for detailed development environment setup instructions.
 
 ## Documentation
 
-- [Development Setup Guide](DEVELOPMENT_SETUP.md)
-- [Automation Guide](DEV_AUTOMATION.md)
-- [System Design Document](SYSTEM_DESIGN.md)
+- [System Design](SYSTEM_DESIGN.md)
+- [Development Setup](DEVELOPMENT_SETUP.md)
+- [API Documentation](docs/api/README.md)
+- [User Guides](docs/user-guides/README.md)
+
+## Architecture
+
+The system follows a local-first architecture with the following components:
+
+```
+[Mobile App] ←→ [Desktop App (Local Server)] ←→ [Central Monitoring Server]
+                        ↑
+                    [SQLite]
+```
+
+- All business data is stored locally in SQLite
+- Desktop app acts as local server for mobile app
+- Central server only handles monitoring and updates
+- Optional cloud sync for data backup
+
+## Security
+
+- Local user authentication
+- Role-based access control
+- Data encryption at rest
+- Secure local API communication
+- Encrypted backups
+
+## Backup and Restore
+
+- Automatic backup scheduling
+- Multiple backup locations
+- Full system restore capability
+- Backup validation
+- Incremental backups
 
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create your feature branch
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support, please:
+1. Check the documentation
+2. Review the troubleshooting guide
+3. Submit an issue
+4. Contact the development team 

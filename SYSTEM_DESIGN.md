@@ -14,52 +14,160 @@
 
 ## 1. System Overview
 
-### 1.1 Purpose
-Storeit is a configurable Inventory Management System designed for small to medium-sized businesses. It provides comprehensive inventory tracking, storage location management, and reporting capabilities.
-
-### 1.2 Key Features
-- Inventory tracking and management
-- Configurable storage locations
-- QR/barcode scanning
-- Real-time inventory updates
-- Reporting and analytics
-- Multi-user support
-- Role-based access control
-- Audit logging
-
-### 1.3 Target Users
-- Warehouse managers
-- Inventory clerks
-- Business owners
-- System administrators
+Storeit is a comprehensive inventory management system designed for mid-sized retail chains, manufacturing SMEs, and distribution companies. The system follows a local-first architecture with optional cloud synchronization capabilities.
 
 ## 2. Architecture
 
-### 2.1 System Architecture
-```plaintext
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│                 │     │                 │     │                 │
-│  WPF Desktop    │◄───►│  Web API Layer  │◄───►│  Data Access   │
-│  Application    │     │                 │     │    Layer        │
-│                 │     │                 │     │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-        ▲                        ▲                        ▲
-        │                        │                        │
-        ▼                        ▼                        ▼
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│                 │     │                 │     │                 │
-│  User Interface │     │  Business Logic │     │  Database Layer │
-│                 │     │                 │     │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
+### Core Components
+
+1. **Desktop Application (.NET MAUI)**
+   - Primary user interface
+   - Local data storage (SQLite)
+   - Offline-first operation
+   - Local API server for mobile integration
+   - Backup and restore capabilities
+
+2. **Mobile Application (React Native/Flutter)**
+   - Barcode/QR scanning
+   - Inventory checks
+   - Basic analytics
+   - Work order management
+   - Local-first with sync capabilities
+
+3. **Central Monitoring Server**
+   - System health monitoring
+   - Module update distribution
+   - Troubleshooting support
+   - Anonymous usage statistics (opt-in)
+
+### Data Flow
+
+```
+[Mobile App] ←→ [Desktop App (Local Server)] ←→ [Central Monitoring Server]
+                        ↑
+                    [SQLite]
 ```
 
-### 2.2 Technology Stack
-- **Frontend**: WPF (.NET 8)
-- **Backend**: .NET 8 Web API
-- **Database**: PostgreSQL 16 (Primary), SQLite (Local)
-- **Authentication**: JWT + Windows Authentication
-- **Logging**: Serilog + Seq
-- **Monitoring**: Application Insights
+## Technical Stack
+
+### Desktop Application
+- Framework: .NET MAUI
+- Database: SQLite
+- Local API: ASP.NET Core
+- Backup System: Custom implementation
+- Security: Local authentication and encryption
+
+### Mobile Application
+- Framework: React Native/Flutter
+- Local Storage: SQLite/Realm
+- Network: Local API integration
+- Security: Local authentication
+
+### Central Server
+- Framework: Node.js/Express
+- Database: PostgreSQL (for monitoring only)
+- API: RESTful endpoints
+- Security: JWT authentication
+
+## Data Management
+
+### Local Storage
+- SQLite database for all business data
+- Encrypted storage for sensitive information
+- Local backup system with multiple storage options
+- Automatic backup scheduling
+
+### Synchronization
+- Hybrid sync model (local-first with cloud option)
+- Conflict resolution strategies
+- Automatic sync when online
+- Manual sync options
+
+## Security
+
+### Local Security
+- Local user authentication
+- Role-based access control
+- Data encryption at rest
+- Secure local API communication
+
+### Backup Security
+- Encrypted backups
+- Multiple backup locations
+- Backup validation
+- Automatic backup scheduling
+
+## Monitoring and Updates
+
+### System Monitoring
+- Local health checks
+- Performance monitoring
+- Error tracking
+- Usage statistics
+
+### Module Updates
+- Centralized update distribution
+- Update validation
+- Rollback capabilities
+- Version management
+
+## Backup and Restore
+
+### Backup System
+- Full system backups
+- Incremental backups
+- Multiple backup locations
+- Backup scheduling
+- Backup validation
+
+### Restore System
+- System restore capabilities
+- Data restore options
+- Configuration restore
+- Validation checks
+
+## Mobile Integration
+
+### Local Network
+- Automatic server discovery
+- Secure local communication
+- Offline operation support
+- Data synchronization
+
+### Features
+- Barcode/QR scanning
+- Inventory management
+- Work order processing
+- Analytics viewing
+- MIS reporting
+
+## Deployment
+
+### Desktop Application
+- Windows installer
+- macOS package
+- Linux package
+- Automatic updates
+
+### Mobile Application
+- App Store distribution
+- Play Store distribution
+- Enterprise distribution
+- Automatic updates
+
+## Future Considerations
+
+### Cloud Integration
+- Optional cloud sync
+- Hybrid operation modes
+- Data migration tools
+- Cloud backup options
+
+### Scalability
+- Multi-location support
+- Distributed operations
+- Performance optimization
+- Resource management
 
 ## 3. Core Components
 
